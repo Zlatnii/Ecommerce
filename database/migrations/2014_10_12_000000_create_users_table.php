@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('lastname');
+            $table->string('location');
+            $table->string('bio');
             $table->text('image')->nullable();
             $table->string('phone')->nullable();
             $table->enum('role', ['admin', 'vendor', 'user'])->default('user');
