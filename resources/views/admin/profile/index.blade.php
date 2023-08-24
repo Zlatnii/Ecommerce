@@ -15,10 +15,10 @@
           <div class="col-auto my-auto">
             <div class="h-100">
               <h5 class="mb-1">
-                Richard Davis
+                {{Auth::user()->name}}
               </h5>
               <p class="mb-0 font-weight-normal text-sm">
-                CEO / Co-Founder
+                Administrative page
               </p>
             </div>
           </div>
@@ -33,7 +33,7 @@
                       <h6 class="mb-0">Profile Information</h6>
                     </div>
                     <div class="col-md-4 text-end">
-                      <a href="{{route('profile.edit')}}">
+                      <a href="{{route('profile.admin.edit')}}">
                         <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile"></i>
                       </a>
                     </div>

@@ -45,6 +45,11 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('vendor')
                 ->as('vendor.')
                 ->group(base_path('routes/vendor.php'));
+            //Adding admin profile CRUD
+            Route::middleware('web','auth','role:admin')
+                ->prefix('profile.admin')
+                ->as('profile.admin.')
+                ->group(base_path('routes/admin.php'));
         });
     }
 }
