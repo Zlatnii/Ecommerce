@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Validation\Rule;
 
 class AdminProfileUpdateRequest extends FormRequest
@@ -13,7 +15,7 @@ class AdminProfileUpdateRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
-    public function rules(): array
+    public function rules(Request $request): array
     {
         return [
             'name' => ['string', 'max:255'],
@@ -22,6 +24,8 @@ class AdminProfileUpdateRequest extends FormRequest
             'phone' => ['string', 'max:255'],
             'location' => ['string', 'max:255'],
             'email' => ['email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+            'image' => ['image', 'nullable', 'max:2048']
         ];
     }
+
 }

@@ -6,6 +6,7 @@ use App\Http\Requests\AdminProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
@@ -25,16 +26,32 @@ class AdminProfileController extends Controller
      * Update the user's profile information.
      */
     public function update(AdminProfileUpdateRequest $request): RedirectResponse
-    {
+    {   
         $request->user()->fill($request->validated());
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
 
+        $user = Auth::user(); 
+        
+        if($request->hasFile('image')){
+            if(File::exists(public_path($user->image))){
+                File::delete(public_path($user->image));
+            }
+            $image = $request->image;
+            $imageName = rand() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('uploads'), $imageName);
+
+            $path = "/uploads/" . $imageName;
+
+            $user->image = $path;
+        }
+
         $request->user()->save();
 
         return Redirect::route('admin.profile')->with('status', 'admin-profile-updated');
+
     }
 
     /**

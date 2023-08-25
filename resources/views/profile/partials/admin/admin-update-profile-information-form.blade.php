@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.admin.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.admin.update') }}" enctype= multipart/form-data class="mt-6 space-y-6">
         @csrf
         @method('patch')
         <div>
@@ -69,6 +69,15 @@
                 </div>
             @endif
         </div>
+
+        <div class="col-auto">
+            <div class="avatar avatar-xl position-relative">
+              <img src="{{Auth::user()->image}}" name="image" alt="Profile image" class="w-20 border-radius-lg shadow-sm">
+            </div>
+        </div>
+
+        <input class="btn-btn primary" type="file" name="image" class="form-control">
+
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>

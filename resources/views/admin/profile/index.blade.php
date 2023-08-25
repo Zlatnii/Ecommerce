@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('content')
-<div class="container-fluid px-2 px-md-4">
+  <div class="container-fluid px-2 px-md-4">
       <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');">
         <span class="mask  bg-gradient-primary  opacity-6"></span>
       </div>
@@ -9,13 +9,14 @@
         <div class="row gx-4 mb-2">
           <div class="col-auto">
             <div class="avatar avatar-xl position-relative">
-              <img src="{{asset('backend/assets/img/bruce-mars.jpg')}}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+              <img src="{{Auth::user()->image}}" name="image" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
             </div>
           </div>
+          <form action="post" enctype="multypart/form-data" action="{{route('admin.profile')}}">
           <div class="col-auto my-auto">
             <div class="h-100">
               <h5 class="mb-1">
-                {{Auth::user()->name}}
+                {{Auth::user()->name}}&nbsp{{Auth::user()->lastname}}
               </h5>
               <p class="mb-0 font-weight-normal text-sm">
                 Administrative page
@@ -133,5 +134,6 @@
         </div>
       </div>
     </div>
+  </form>
 @include('admin.layouts.footer')
 @endsection
