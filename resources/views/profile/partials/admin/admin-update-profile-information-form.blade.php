@@ -9,10 +9,9 @@
         </p>
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+<form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
-
     <form method="post" action="{{ route('profile.admin.update') }}" enctype= multipart/form-data class="mt-6 space-y-6">
         @csrf
         @method('patch')
@@ -69,7 +68,6 @@
                 </div>
             @endif
         </div>
-
         <div class="col-auto">
             <div class="avatar avatar-xl position-relative">
               <img src="{{Auth::user()->image}}" name="image" alt="Profile image" class="w-20 border-radius-lg shadow-sm">
@@ -91,6 +89,5 @@
                 >{{ __('Saved.') }}</p>
             @endif
         </div>
-
     </form>
 </section>

@@ -12,7 +12,6 @@
               <img src="{{Auth::user()->image}}" name="image" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
             </div>
           </div>
-          <form action="post" enctype="multypart/form-data" action="{{route('admin.profile')}}">
           <div class="col-auto my-auto">
             <div class="h-100">
               <h5 class="mb-1">
@@ -134,6 +133,5 @@
         </div>
       </div>
     </div>
-  </form>
 @include('admin.layouts.footer')
 @endsection
