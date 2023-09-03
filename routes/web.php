@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.home.home');
 });
 
 Route::get('/dashboard', function () {
@@ -33,6 +33,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
 Route::get('admin/login', [AdminController::class, 'login'])->name('admin.login');
+Route::get('admin/register', [AdminController::class, 'register'])->name('admin.register');
 

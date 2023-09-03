@@ -49,7 +49,8 @@ class AdminProfileController extends Controller
         }
 
         $request->user()->save();
-
+        
+        toastr()->success('Profile updated succesfuly!');
         return Redirect::route('admin.profile')->with('status', 'admin-profile-updated');
 
     }
@@ -72,6 +73,7 @@ class AdminProfileController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
+        toastr()->success('Profile deleted succesfuly!');
         return Redirect::to('admin.dashboard');
     }
 }
